@@ -120,7 +120,7 @@ export class GameComponent implements OnInit {
   }
 
   drawAlien() {
-    this.aliens.forEach((alien, index) => {
+    this.aliens.forEach((alien, ) => {
       this.ctx.drawImage(alien.image, alien.x, alien.y, this.alienWidth, this.alienHeight);
       alien.x += alien.dx;
       alien.y += alien.dy;

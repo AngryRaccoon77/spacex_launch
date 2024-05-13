@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AsyncPipe, NgForOf, NgIf, SlicePipe} from "@angular/common";
-import {selectRecentLaunches, selectUpcomingLaunches} from "../../store/selectors/launch.selector";
+import { selectUpcomingLaunches} from "../../store/selectors/launch.selector";
 import {map} from "rxjs/operators";
 import * as LaunchActions from "../../store/actions/launch.action";
 import {Observable} from "rxjs";
