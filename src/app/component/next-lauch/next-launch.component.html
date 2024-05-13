@@ -1,0 +1,18 @@
+<div *ngIf="(nextLaunch$ | async) as nextLaunch; else noLaunch">
+  <div class="card">
+    <h3> Next launch</h3>
+    <div class="card-body">
+      <h5 class="card-title">{{ nextLaunch.name }}</h5>
+      <p class="card-text">Launch date: {{ nextLaunch.date_utc | date }}</p>
+      <p>До старта</p><app-countdown [nextLaunch$]="nextLaunch$"></app-countdown>
+      <div *ngIf="currentDate > nextLaunch.date_unix">
+        Кажется, надо <a href="https://twitter.com/elonmusk" target="_blank">написать Илону</a>, чтобы он обновил API
+      </div>
+      <img [ngSrc]="iconUrl" height="32" width="32" (click)="startGame()">
+      <!--<a href="#" class="btn btn-primary" target="_blank">Read more</a>-->
+    </div>
+  </div>
+</div>
+<ng-template #noLaunch>
+  <p>No upcoming launch.</p>
+</ng-template>

@@ -1,0 +1,6 @@
+<header>
+    <img [ngSrc]="logoUrl" alt="SpaceX Logo" height="50" width="300" (click)="yankeesGoHome()" priority="">
+    <div class="timer">
+    <p>До следующего запуска осталось:</p><app-countdown class="move-right" [nextLaunch$]="nextLaunch$"></app-countdown>
+    </div>
+</header>

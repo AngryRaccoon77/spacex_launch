@@ -1,0 +1,5 @@
+<h3>Recent Launches</h3>
+
+<div *ngFor="let launch of recentLaunches$ | async">
+  <app-launch-card [launch]="launch" (selected)="onLaunchSelected($event)"></app-launch-card>
+</div>

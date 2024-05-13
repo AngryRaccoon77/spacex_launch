@@ -1,0 +1,11 @@
+<div class="card">
+    <div (click)="selectLaunch()">
+    <h5 class="card-title">{{ launch.name }}</h5>
+    <p class="card-text">Launch date: {{ launch.date_utc | date }}</p>
+    <p class="card-text">Rocket: {{ launch.rocket }}</p>
+    <p class="card-text">Flight number: {{ launch.flight_number }}</p>
+    <p class="card-text">Success: {{ launch.success ? 'Yes' : 'No' }}</p>
+</div>
+</div>
+    <app-launch-detail *ngIf="showDetails" [launch]="launch"></app-launch-detail>
+
