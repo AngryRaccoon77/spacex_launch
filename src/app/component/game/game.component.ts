@@ -43,7 +43,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;
-    this.canvas.width = window.innerWidth-100;
+    this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight-150;
     const context = this.canvas.getContext('2d');
     if (!context) {

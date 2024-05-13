@@ -42,16 +42,14 @@ export class UpcomingLaunchesComponent implements OnInit {
         this.store.dispatch(LaunchActions.loadUpcomingLaunches());
     }
 
-    showMore(): void {
-        if (this.displayCount + 6 < this.length) {
-            this.displayCount += 6; // увеличиваем количество отображаемых элементов
-        }
-        else {
-            this.allLaunchesLoaded = true// отображаем все элементы
-        }
-        console.log(this.displayCount,);
-
+  showMore(): void {
+    if (this.displayCount < this.length) {
+      this.displayCount += 6; // увеличиваем количество отображаемых элементов
+      if (this.displayCount >= this.length) {
+        this.allLaunchesLoaded = true; // отображаем все элементы
+      }
     }
+  }
     showLess(): void {
         this.displayCount = 6; // уменьшаем количество отображаемых элементов
         this.allLaunchesLoaded = false;

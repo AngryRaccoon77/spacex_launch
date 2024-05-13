@@ -1,4 +1,5 @@
 <h3>Upcoming Launches</h3>
+
 <div class="upcoming">
     <div class="card" *ngFor="let launch of upcomingLaunches$ | async | slice:0:displayCount">
         <app-launch-card [launch]="launch" (selected)="onLaunchSelected($event)"></app-launch-card>
