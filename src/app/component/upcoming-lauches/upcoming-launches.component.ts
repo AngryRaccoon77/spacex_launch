@@ -28,8 +28,10 @@ export class UpcomingLaunchesComponent implements OnInit {
     allLaunchesLoaded = false;
     length = 0;
     displayCount = 6; // количество отображаемых элементов
+    openCard: LaunchCardComponent | null = null;
 
-    constructor(private store: Store) { }
+
+  constructor(private store: Store) { }
 
     ngOnInit(): void {
         this.upcomingLaunches$ = this.store.select(selectUpcomingLaunches);
@@ -40,6 +42,8 @@ export class UpcomingLaunchesComponent implements OnInit {
             this.length = launches.length;
         });
         this.store.dispatch(LaunchActions.loadUpcomingLaunches());
+
+
     }
 
   showMore(): void {
@@ -57,7 +61,15 @@ export class UpcomingLaunchesComponent implements OnInit {
     selectedLaunch!: Launch;
 
 
-    onLaunchSelected(launch: Launch) {
-        this.selectedLaunch = launch;
+  onLaunchSelected(launch: Launch, card: LaunchCardComponent) {
+    this.closeOtherCards(card);
+    this.selectedLaunch = launch;
+  }
+
+  closeOtherCards(openCard: LaunchCardComponent) {
+    if (this.openCard && this.openCard !== openCard) {
+      this.openCard.closeDetails();
     }
+    this.openCard = openCard;
+  }
 }

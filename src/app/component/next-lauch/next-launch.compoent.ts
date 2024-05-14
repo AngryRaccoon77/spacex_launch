@@ -26,7 +26,7 @@ import {Router} from "@angular/router";
 export class NextLaunchComponent implements OnInit {
     nextLaunch$!: Observable<Launch | null>;
     currentDate: number = new Date().getTime();
-    iconUrl = 'assets/img/ship.png';
+    iconUrl = 'assets/img/rocket.png';
 
 
   constructor(private store: Store, private router: Router) {}

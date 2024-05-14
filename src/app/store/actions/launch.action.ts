@@ -12,13 +12,13 @@ export const loadUpcomingLaunchesSuccess = createAction(
     props<{ launches: Launch[] }>()
 );
 
-export const loadRecentLaunches = createAction(
-    '[Launch] Load Recent Launches'
+export const loadRecentLaunch = createAction(
+    '[Launch] Load Recent Launch'
 );
 
 export const loadRecentLaunchesSuccess = createAction(
-    '[Launch] Load Recent Launches Success',
-    props<{ launches: Launch[] }>()
+    '[Launch] Load Recent Launch Success',
+    props<{ launch: Launch}>()
 );
 
 export const loadOtherLaunches = createAction(

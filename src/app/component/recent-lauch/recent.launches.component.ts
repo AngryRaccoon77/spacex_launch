@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as LaunchActions from '../../store/actions/launch.action';
-import * as LaunchSelectors from '../../store/selectors/launch.selector';
-import {AsyncPipe, NgForOf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {Launch} from "../../models/launch.model";
 import {selectRecentLaunches} from "../../store/selectors/launch.selector";
 import {map} from "rxjs/operators";
@@ -18,23 +17,21 @@ import {LaunchDetailComponent} from "../launch-detail/launch-detail.component";
     AsyncPipe,
     NgForOf,
     LaunchCardComponent,
-    LaunchDetailComponent
+    LaunchDetailComponent,
+    NgIf
   ],
   standalone: true
 })
 export class LaunchComponent implements OnInit {
 
-  recentLaunches$!: Observable<Launch[]>;
+  recentLaunch$!: Observable<Launch | null>;
 
 
   constructor(private store: Store){}
 
   ngOnInit(): void {
-    this.recentLaunches$ = this.store.select(selectRecentLaunches);
-    this.recentLaunches$ = this.recentLaunches$.pipe(
-        map(value => Array.isArray(value) ? value : [value])
-    );
-    this.store.dispatch(LaunchActions.loadRecentLaunches());
+    this.recentLaunch$ = this.store.select(selectRecentLaunches);
+    this.store.dispatch(LaunchActions.loadRecentLaunch());
   }
 
   selectedLaunch!: Launch;

@@ -1,5 +1,7 @@
-<h3>Recent Launches</h3>
-
-<div *ngFor="let launch of recentLaunches$ | async">
+<h2>Недавние запуски</h2>
+<div class="center-content" *ngIf="(recentLaunch$ | async) as launch; else noLaunch">
   <app-launch-card [launch]="launch" (selected)="onLaunchSelected($event)"></app-launch-card>
 </div>
+<ng-template #noLaunch>
+  <p class="center-content">No upcoming launch.</p>
+</ng-template>

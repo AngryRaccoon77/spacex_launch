@@ -22,13 +22,21 @@ export class LaunchEffects {
     ));
 
     loadRecentLaunches$ = createEffect(() => this.actions$.pipe(
-        ofType(LaunchActions.loadRecentLaunches),
-        mergeMap(() => this.spaceXService.getRecentLaunches()
-            .pipe(
-                map(launches => LaunchActions.loadRecentLaunchesSuccess({ launches })),
-                catchError(error => of(LaunchActions.loadLaunchesFailure({ error })))
-            )
-        )
+        ofType(LaunchActions.loadRecentLaunch),
+        mergeMap(() => {
+            console.log('Sending request for next launches...');
+            return this.spaceXService.getRecentLaunches()
+                .pipe(
+                    map(launch => {
+                        console.log('Request for next launches successful');
+                        return LaunchActions.loadRecentLaunchesSuccess({ launch });
+                    }),
+                    catchError(error => {
+                        console.log('Request for next launches failed', error);
+                        return of(LaunchActions.loadLaunchesFailure({ error }));
+                    })
+                );
+        })
     ));
 
     loadOtherLaunches$ = createEffect(() => this.actions$.pipe(

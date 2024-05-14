@@ -32,6 +32,7 @@ export class GameComponent implements OnInit {
   mysteryShipX: number = -100;
   mysteryShipY: number = 0;
   mysteryShipDX: number = 2;
+  waveCount: number = 0;
   mysteryShipAppearing: boolean = true;
   alienImage1: HTMLImageElement = new Image();
   alienImage2: HTMLImageElement = new Image();
@@ -103,6 +104,8 @@ export class GameComponent implements OnInit {
     if (this.mysteryShipAppearing) {
       this.drawMysteryShip();
     }
+    this.checkWin();
+    this.checkLoss();
   }
 
   drawShip() {
@@ -161,7 +164,7 @@ export class GameComponent implements OnInit {
       this.bulletY + 10 > this.mysteryShipY) {
       // Bullet hit the mystery ship
       this.mysteryShipAppearing = false;
-      this.score += 10; // увеличиваем счет
+      this.score += 100; // увеличиваем счет
     }
   }
   alienShoot() {
@@ -191,8 +194,8 @@ export class GameComponent implements OnInit {
 
   checkWin() {
     if (this.aliens.length === 0) {
-      alert('Вы выиграли!');
-      this.restartGame();
+      alert('Новая волна!');
+      this.createAlienWave();
     }
   }
 
@@ -207,6 +210,34 @@ export class GameComponent implements OnInit {
           this.restartGame();
           break;
         }
+      }
+    }
+  }
+
+  createAlienWave() {
+    this.waveCount++;
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 5; j++) {
+        let points;
+        let image;
+        if (j < 2) {
+          points = 10;
+          image= this.alienImage1;
+        } else if (j === 2) {
+          points = 20;
+          image = this.alienImage2;
+        } else {
+          points = 40;
+          image = this.alienImage3;
+        }
+        this.aliens.push({
+          x: 30 + i * 60,
+          y: 30 + j * 60,
+          dx: 0.1 * 1.05 * this.waveCount,
+          dy: 0.01 * 1.01 * this.waveCount,
+          points: points,
+          image: image
+        });
       }
     }
   }
@@ -246,15 +277,13 @@ export class GameComponent implements OnInit {
         });
       }
     }
-    this.lives = 3; // сбрасываем количество жизней
-    this.alienBullets = []; // сбрасываем пули пришельцев
+    this.lives = 3;
+    this.alienBullets = [];
 
   }
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    this.checkWin();
-    this.checkLoss();
     if (event.key === 'ArrowLeft' && this.shipX > 0) {
       this.shipX -= 15;
     } else if (event.key === 'ArrowRight' && this.shipX < this.canvas.width - 50) {
