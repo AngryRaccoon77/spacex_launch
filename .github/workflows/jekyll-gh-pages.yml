@@ -16,7 +16,7 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14' # Версия Node.js, которую вы используете для вашего проекта
+        node-version: 'v18.18.2' # Версия Node.js, которую вы используете для вашего проекта
       
     - name: Install dependencies
       run: npm install # Или yarn install, если вы используете Yarn
