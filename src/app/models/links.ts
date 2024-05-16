@@ -2,7 +2,7 @@ export interface Links {
     patch: {
 
         large: string;
-        small: string;
+        small: string | null | undefined;
 
     };
     reddit: {
