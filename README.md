@@ -1,6 +1,12 @@
 # SpaceXLaunch
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+SpaceXLaunch is a web application that provides information about SpaceX launches. It was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+
+## Features
+
+- View upcoming SpaceX launches
+- View recent SpaceX launches
+- View past SpaceX launches
 
 ## Development server
 
@@ -16,7 +22,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Running end-to-end tests
 

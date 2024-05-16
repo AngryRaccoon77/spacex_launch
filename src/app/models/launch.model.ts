@@ -8,7 +8,7 @@ export interface Launch {
   flight_number: number;
   rocket: string;
   launchpad: string;
-  crew: string[]; // Change this to string[]
+  crew: string[];
   payloads: string[];
   success: boolean;
   links: Links;
