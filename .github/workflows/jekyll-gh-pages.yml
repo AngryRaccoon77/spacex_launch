@@ -22,7 +22,7 @@ jobs:
       run: npm install # Или yarn install, если вы используете Yarn
       
     - name: Build Angular app
-      run: npm run build # Или yarn build, если вы используете Yarn
+      run: npm run build -- --base-href="https://angryracoon.github.io/spacex_launch/"
       # Здесь предполагается, что ваш сценарий сборки настроен на создание статических файлов в папке dist
       
     - name: Deploy to GitHub Pages
