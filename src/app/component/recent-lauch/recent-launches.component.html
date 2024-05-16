@@ -1,4 +1,4 @@
-<h2>Недавние запуски</h2>
+<h2>Недавний запуск</h2>
 <div class="center-content" *ngIf="(recentLaunch$ | async) as launch; else noLaunch">
   <app-launch-card [launch]="launch" (selected)="onLaunchSelected($event)"></app-launch-card>
 </div>
