@@ -5,8 +5,8 @@
     line-height: 0.5;
     text-align: center;
 }
-.img {
-    padding: 10px;
+img {
+    cursor:pointer;
 }
 header{
     background-color: #333;
